@@ -34,4 +34,4 @@
 
 本文基于underscore的[1.8.3版本](https://github.com/jashkenas/underscore/tree/1.8.3)进行分析, 在阅读官方文档时遇到的困难时，特别感谢[underscore中文教程](http://www.css88.com/doc/underscore/)提供的帮助。
 
-> 欢迎转载或者引用，但请注明出处，这算是对我工作成果的认可和尊重。也欢迎拍砖，相应问题可以发到issues，我会最快时间进行更正或者解答。
+> 欢迎转载或者引用，但请注明出处，这算是对我工作成果的认可和尊重。也欢迎拍砖，相应问题可以发到[discussion](https://www.gitbook.com/book/yoyoyohamapi/undersercore-analysis/discussions)，我会最快时间进行更正或者解答。
