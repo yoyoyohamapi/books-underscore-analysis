@@ -5,6 +5,8 @@
   * [松弛绑定](base/松弛绑定.md)
   * [局部变量的妙用](base/局部变量的妙用.md)
   * [undefined的处理](base/undefined的处理.md)
+  * [迭代处理](base/迭代处理.md)
+  * [rest参数](base/rest参数.md)
 * [underscore集合篇](collection/README.md)
 * [underscore数组篇](array/README.md)
 * [underscore函数篇](function/README.md)
