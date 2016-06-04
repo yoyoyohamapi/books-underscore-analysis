@@ -18,11 +18,11 @@
 在基础部分，将会阐述一些undersocre的内部函数（internal function），这些函数被大量用到了underscore的api实现中，是我们之后理解underscore源码的必须途径。
 
 之后，我们按照官方API文档的顺序来阐述underscore的源码实现，由于很多API的实现可以举一反三，所以，本书并不会啰嗦的阐述每个api的实现，如果真的由此需求，可以配合我写的[underscore中文注释](https://github.com/yoyoyohamapi/underscore/blob/master/underscore.js)辅助阅读。
-### undersocre colletion
-### underscore array
-### undersocre function
-### underscore object
-### underscore utility
+### undersocre colletion（集合）篇
+### underscore array（数组）篇
+### undersocre function（函数）篇
+### underscore object（对象）篇
+### underscore utility（实用工具）篇
 
 
 
