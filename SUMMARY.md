@@ -7,6 +7,7 @@
   * [undefined的处理](base/undefined的处理.md)
   * [迭代！迭代！迭代！](base/迭代！迭代！迭代！.md)
   * [rest参数](base/rest参数.md)
+  * [创建对象的正确姿势](base/创建对象的正确姿势.md)
 * [underscore集合篇](collection/README.md)
 * [underscore数组篇](array/README.md)
 * [underscore函数篇](function/README.md)
