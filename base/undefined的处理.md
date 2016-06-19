@@ -54,6 +54,6 @@ void(0);
 在这个函数中，我们没有向其传递第二参数（形参名叫undefined），那么第二个参数的值就会被传递上“未定义”，因此，通过这种方式，在该函数的作用域中的undefined都为受信的undefined。
 
 ## 参考资料
-[《MDN: undefined》](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+[MDN: undefined](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 
-[《MDN: void》](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/void)
+[MDN: void](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/void)
