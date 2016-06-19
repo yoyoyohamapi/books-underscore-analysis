@@ -1,5 +1,5 @@
 ## 不可靠的undefined
-假设我们想判断一个是否是undefined，那么我们通常会这样写
+在js中，假设我们想判断一个是否是`undefined`，那么我们通常会这样写
 
 ```js
 if(a === undefined){}
