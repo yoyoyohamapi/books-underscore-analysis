@@ -51,7 +51,7 @@ def add(a,*numbers):
     return sum
 ```
 
-所以，更理想的方式是，让，即最后一个形参默认是rest参数, 为此，我们需要创建一个工厂函数，他接受一个现有的函数，包装他，使之支持rest参数：
+所以，更理想的方式是，提供一个更直观的方式让开发者知道那个参数是rest参数，比如，现在有一个函数，其支持rest参数，那么我们总是假定这类函数的最后一个参数是rest参数, 为此，我们需要创建一个工厂函数，他接受一个现有的函数，包装该函数，使之支持rest参数：
 ```js
 function add(a, rest){
   return _.reduce(rest,function(accum, current){
