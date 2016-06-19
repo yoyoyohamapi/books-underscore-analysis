@@ -17,7 +17,7 @@ function add(numbers){
 }
 ```
 
-或者直接利用js中的__arguments__:
+或者直接利用js中的`arguments`:
 ```js
 function add(){
   var numbers = Array.prototype.slice.call(arguments);
@@ -38,11 +38,11 @@ function add(a){
 add(2,3,4,5); // => 14
 ```
 
-在这个add实现中，我们已经开始有了rest参数的雏形，除了自由和松散，rest还有一层意思，就是他的字面意思--__剩余__，所以在许多语言环境中，rest参数从最后一个形参开始，表示剩余的参数。
+在这个`add`实现中，我们已经开始有了rest参数的雏形，除了自由和松散，rest还有一层意思，就是他的字面意思--__剩余__，所以在许多语言环境中，rest参数从最后一个形参开始，表示剩余的参数。
 
 ### 更理想的方式
-然而最后一个add方法还是把对rest参数的获取耦合到了add的执行逻辑中，同时，这样做还会引起歧义，因为在add函数的使用者看来，add函数似乎只需要一个参数a。
-而在python，java等语言中，rest参数是需要显示声明的，比如python中的：
+然而最后一个`add`函数还是把对rest参数的获取耦合到了`add`的执行逻辑中，同时，这样做还会引起歧义，因为在add函数的使用者看来，`add`函数似乎只需要一个参数`a`。
+而在python，java等语言中，rest参数是需要显示声明的，这种生命能让函数调用者知道哪些参数是rest参数，比如python中通过`*`标识rest参数：
 ```python
 def add(a,*numbers):
     sum = a
@@ -51,7 +51,7 @@ def add(a,*numbers):
     return sum
 ```
 
-所以，更理想的方式是，让我们的函数支持这种声明方式，即最后一个形参默认是rest参数, 为此，我们需要创建一个工厂函数，他接受一个现有的函数，包装他，使之支持rest参数：
+所以，更理想的方式是，让，即最后一个形参默认是rest参数, 为此，我们需要创建一个工厂函数，他接受一个现有的函数，包装他，使之支持rest参数：
 ```js
 function add(a, rest){
   return _.reduce(rest,function(accum, current){
@@ -84,9 +84,9 @@ addWithRest = genRestFunc(add);
 addWithRest(1,2,3,4); // => 10 
 ```
 
-> 通过函数的__length__属性，我们能够获得其形参个数
+> 记住，在js中，函数也是对象，并且我们能够通过函数对象的`length`属性获得其形参个数
 
-最后，我们来看一下underscore的官方实现：
+最后，我们来看一下underscore的官方实现，他还暴露一个`_.restArgs`函数，通过给该函数传递一个`func`参数，能够使得`func`支持rest参数：
 
 ```js
 /**
