@@ -10,7 +10,12 @@
    * [rest参数](base/rest参数.md)
    * [创建对象的正确姿势](base/创建对象的正确姿势.md)
 * [underscore集合篇](collection/README.md)
-   * collection/README.md
+   * [什么能够被迭代](collection/什么能够被迭代.md)
+   * [真值检测函数](collecion/真值检测函数.md)
+   * [查询](collection/查询.md)
+   * [随机取样与洗牌算法](collection/随机取样与洗牌算法)
+   * [高度自定义的排序](collection/高度自定义的排序.md)
+   * [模拟一段sql](collections/模拟一段sql.md)
 * [underscore数组篇](array/README.md)
 * [underscore函数篇](function/README.md)
 * [underscore对象篇](object/README.md)
