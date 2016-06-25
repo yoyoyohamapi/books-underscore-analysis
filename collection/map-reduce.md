@@ -2,6 +2,10 @@
 如果你有一定的js编程经历，那么你一定已经接触过`Array.prototype`提供的`map`和`reduce`函数。现在你需要明白的是，二者不仅仅是存在于js的两个API，更是函数式编程语言的重要组成部分，是一种对列表的操作思路。
 
 map-reduce由如下两个独立的部分组成：
-- map（映射）：一个映射过程就是将某个列表中的各个元素，__按照一定的规则__，逐个映射为新的元素，并构成的新的列表。用数学公式描述就是：
+- __map（映射）__：一个映射过程就是将某个列表中的各个元素，__按照一定的规则__，逐个映射为新的元素，并构成的新的列表。用数学公式描述就是(其中，函数$$ f $$就是这个规则)：
 
-- reduce （规约）：
+$$
+\left[ \begin{array}{c} newElem1 \\ newElem2 \\ newElem3 \\ ... \\ newElemN  \end{array} \right]\ = f(\left[  \begin{array}{c} elem1 \\ elem2 \\ elem3 \\ ... \\ elemN \end{array} \right]) 
+$$
+
+- __reduce （规约）__：一个规约过程就是
