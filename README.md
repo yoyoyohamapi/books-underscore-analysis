@@ -1,5 +1,4 @@
 ## 写作意图
-----------
 
 起初，我分析underscore的源码只是想更深入的了解__函数式编程（Functional Programming）__，但分析完成后，撰文发布的动机就不仅于此了。以下能简单概括我的写作意图：
 
@@ -8,11 +7,9 @@
 - 在阅读underscore的源码期间，被作者jashkenas（他同时也是backbone和）的功力深深折服，一些功能可能我也能写出，但绝对写不了如此健壮。所以，深入学习underscore源码，不仅有助于我们认识函数式编程，也能深化我们对于js中一些基础知识的理解和掌握。
 
 - 随着backbone的衰落和lodash的崛起，underscore的热度已经不及当年，但是截止这篇文章的开始前的一个月，underscore仍然有最新的bug修复，可见作者jashkenas仍然没有放弃undersocre的维护。所以现在分析underscore的源码仍然不显得过时。相较于lodash，underscore的源码更加短小，也不太涉及js中的一些奇淫巧技，所以，分析underscore更加适合js开发者的进阶。在完成了underscore的源码分析后，希望我自己有时间，也希望读者有意愿再去分析lodash的源码，后者在性能和功能上都已经被认为是超越了undersocre，并且长时间霸占了npm了最热package的位置。
-
-
+----------
 
 ## 章节安排
--------------
 
 本书大致会分为以下章节：
 
@@ -27,10 +24,9 @@
 ### [underscore object（对象）篇](object/README.md)
 ### [underscore utility（实用工具）篇](utility/README.md)
 
-
+-------------
 
 ## 感谢
----------
 
 本文基于underscore的[1.8.3版本](https://github.com/jashkenas/underscore/tree/1.8.3)进行分析, 在阅读官方文档时遇到的困难时，特别感谢[underscore中文教程](http://www.css88.com/doc/underscore/)提供的帮助。
 
