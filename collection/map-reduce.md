@@ -50,14 +50,17 @@ var obj = {
 };
 var wxjInfos = _.map(obj, function(value ,key, obj){
   return [key, value].join(':');
-}); // wxjInfors => ['name:wxj', 'age:13', 'sex:male']
+}); // => wxjInfors: ['name:wxj', 'age:13', 'sex:male']
 ```
 
 
 ### reduce在underscore中的实现
-相较于map，reduce函数在underscore中的实现更为复杂一些，因此，underscore而外撰写一个内部函数`createReducer`用来创建reduce。其思路大致如下：
+相较于map，reduce函数在underscore中的实现更为复杂一些，因此，underscore而外撰写一个内部函数`createReducer`用来创建reduce函数，其完成了如下几件事：
 - 区分reduce的方向`dir`，是从序列__开端__开始做规约过程，还是从序列__末端__开始做规约过程。
-- 如果没有创建一个`memo`用以缓存当前当前的规约过程的结果
+- 判断用户在使用`_.reduce`或者`_.reduceRight`时，是否传入了第三个参数，即是否传入了规约起点，判断结果又`initial`变量进行标识。
+
+而对于一个reduce函数来说，其执行过程大致如下：
+- 设置一个变量`memo`用以缓存当前当前的规约过程的结果，如果用户未初始化`memo`，则`memo`为序列的一个参数
 - 遍历当前集合，对最近迭代到的元素按传入的`func`进行规约操作，刷新`memo`
 - 规约过程完成，返回`memo`
 ```js
@@ -93,6 +96,14 @@ var wxjInfos = _.map(obj, function(value ,key, obj){
   };
 ```
 
+最终，underscore暴露给了5个reduce API给用户：
+```js
+// 由左至右进行规约
+_.reduce = _.foldl = _.inject = createReduce(1);
+// 由右至左进行规约
+_.reduceRight = _.foldr = createReduce(-1);
+```
+
 使用用例：
 1. 对数组使用`_.reduce`
 ```js
@@ -100,7 +111,7 @@ var array = [1,2,3,4,5];
 var sum = _.reduce(array, function(prev, current){
   return prev+current;
 } ,0);
-// sum: 15
+// => sum: 15
 ```
 2. 一般对象也可以进行`_.reduce`
 ```js
