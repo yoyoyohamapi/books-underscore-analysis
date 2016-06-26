@@ -12,7 +12,7 @@
 * [underscore集合篇](collection/README.md)
    * [什么能够被迭代](collection/什么能够被迭代.md)
    * [map-reduce](collection/map-reduce.md)
-   * [真值检测函数](collecion/真值检测函数.md)
+   * [真值检测函数](collection/真值检测函数.md)
    * [查询](collection/查询.md)
    * [随机取样与洗牌算法](collection/随机取样与洗牌算法)
    * [高度自定义的排序](collection/高度自定义的排序.md)
