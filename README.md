@@ -1,4 +1,4 @@
-# 写作意图
+## 写作意图
 ----------
 
 起初，我分析underscore的源码只是想更深入的了解__函数式编程（Functional Programming）__，但分析完成后，撰文发布的动机就不仅于此了。以下能简单概括我的写作意图：
@@ -11,7 +11,7 @@
 
 
 
-# 章节安排
+## 章节安排
 -------------
 
 本书大致会分为以下章节：
@@ -29,7 +29,7 @@
 
 
 
-# 感谢
+## 感谢
 ---------
 
 本文基于underscore的[1.8.3版本](https://github.com/jashkenas/underscore/tree/1.8.3)进行分析, 在阅读官方文档时遇到的困难时，特别感谢[underscore中文教程](http://www.css88.com/doc/underscore/)提供的帮助。
