@@ -15,7 +15,7 @@
    * [真值检测函数](collection/真值检测函数.md)
    * [查询](collection/查询.md)
    * [随机取样与洗牌算法](collection/随机取样与洗牌算法.md)
-   * [高度自定义的排序](collection/高度自定义的排序.md)
+   * [更好用的排序](collection/高度自定义的排序.md)
    * [模拟一段sql](collections/模拟一段sql.md)
 * [underscore数组篇](array/README.md)
 * [underscore函数篇](function/README.md)
