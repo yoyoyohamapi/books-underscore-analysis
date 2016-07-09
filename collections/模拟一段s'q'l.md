@@ -67,17 +67,16 @@ var result = sql.groupBy('sex').where(predicate).select(['username', 'id']);
 ```js
 // 限定
 function where(rows, predicate) {
-  if(_.isObject(rows)) {
-    return _.keys(rows).reduce(function(groups, key){
-      if(!groups[key]){
-        groups[key] = [];
+  if (_.isArray(rows)) {
+    return rows.filter(predicate);
+  } else if(_.isObject(rows)) {
+    return _.keys(rows).reduce(function(groups, group){
+      if(!groups[group]){
+        groups[group] = [];
       }
-      var row = rows[key];
-      groups[key] = rows.filter(predicate);
+      groups[group] = rows[group].filter(predicate);
       return groups;
     }, {});
-  } else if (_.isArray(rows)) {
-    return rows.filter(predicate);
   } else {
     return rows;
   }
@@ -97,8 +96,35 @@ function groupBy(rows, key) {
 }
 
 // 投影
-function select(rows) {
-  
+function select(rows, keys) {
+  if (_.isArray(rows){
+     return rows.map(function(row){
+        return _.keys(row).reduce(function(elem, key){
+          if(_.indexOf(keys, key)){
+            elem[key] = row[key];
+          }
+          return elem;
+        }. {});
+      });
+   } else if(_.isObject(rows)) {
+     return _.keys(rows).reduce(function(groups, key){
+         if(!groups[key]){
+        groups[key] = [];
+      }
+      var row = rows[key];
+      groups[key] = rows.map(function(row){
+        return _.keys(row).reduce(function(elem, key){
+          if(_.indexOf(keys, key)){
+            elem[key] = row[key];
+          }
+          return elem;
+        }. {});
+      });
+      return groups;
+     }, {});
+   } else {
+     return rows;
+   } 
 }
 ```
 
