@@ -16,7 +16,7 @@
    * [查询](collection/查询.md)
    * [随机取样与洗牌算法](collection/随机取样与洗牌算法.md)
    * [更好用的排序](collection/更好用的排序.md)
-   * [模拟一段sql](collections/模拟一段sql.md)
+   * [模拟一段sql](collections/模拟一段s'q'l.md)
 * [underscore数组篇](array/README.md)
 * [underscore函数篇](function/README.md)
 * [underscore对象篇](object/README.md)
