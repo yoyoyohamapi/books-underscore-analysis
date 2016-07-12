@@ -20,7 +20,7 @@
    * [拾遗](collection/拾遗.md)
 * [underscore数组篇](array/README.md)
    * [定位](array/定位.md)
-   * 合并与展开
+   * [合并与展开](array/合并与展开.md)
    * [拾遗](array/拾遗.md)
    * [数组运算](array/数组运算.md)
 * [underscore函数篇](function/README.md)
