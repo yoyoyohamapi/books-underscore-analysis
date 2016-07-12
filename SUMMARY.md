@@ -22,7 +22,7 @@
    * [定位](array/定位.md)
    * [拾遗](array/拾遗.md)
    * [数组运算](array/数组运算.md)
-   * [展开一个数组.md](array/展开一个数组.md)
+   * [展开一个数组](array/展开一个数组.md)
 * [underscore函数篇](function/README.md)
 * [underscore对象篇](object/README.md)
 * [underscore实用工具篇](utility/README.md)
