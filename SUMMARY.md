@@ -19,6 +19,7 @@
    * [模拟一段sql](collection/模拟一段sql.md)
    * [拾遗](collection/拾遗.md)
 * [underscore数组篇](array/README.md)
+   * 定位.md
 * [underscore函数篇](function/README.md)
 * [underscore对象篇](object/README.md)
 * [underscore实用工具篇](utility/README.md)
