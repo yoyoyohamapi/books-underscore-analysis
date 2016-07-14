@@ -30,6 +30,7 @@
    * 缓存
    * 延时执行
    * 函数组合
+   * throttle与debounce
 * [underscore对象篇](object/README.md)
 * [underscore实用工具篇](utility/README.md)
 
