@@ -24,6 +24,7 @@
    * [数组运算](array/数组运算.md)
    * [拾遗](array/拾遗.md)
 * [underscore函数篇](function/README.md)
+   * 作用域绑定
 * [underscore对象篇](object/README.md)
 * [underscore实用工具篇](utility/README.md)
 
