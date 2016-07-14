@@ -23,6 +23,7 @@
    * [展开一个数组](array/展开一个数组.md)
    * [数组运算](array/数组运算.md)
    * [拾遗](array/拾遗.md)
+       * throttle与debounce
 * [underscore函数篇](function/README.md)
    * 作用域绑定
    * 偏函数
