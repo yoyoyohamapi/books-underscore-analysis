@@ -26,6 +26,7 @@
 * [underscore函数篇](function/README.md)
    * 作用域绑定
    * 偏函数
+   * 缓存
 * [underscore对象篇](object/README.md)
 * [underscore实用工具篇](utility/README.md)
 
