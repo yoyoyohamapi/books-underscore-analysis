@@ -125,48 +125,6 @@ $("#queryBtn").click(delayedQuery);
 
 但是，我们的业务代码 `sendQuery` 还是去耦合了刷新 `previous` 的逻辑，并且，每个延迟执行的诉求都要去做这样一个包裹，样板代码就显得太多了。现在我们撰写一个通用函数，我们将（1）`需要控制调用频度的函数` 和（2）`对调用频度的限制` 传递给他，他能够返回一个限制了执行频率的函数。
 
-```javascript
-/**
- * throttle
- * @param {Function} func 待控制频率的函数
- * @param {Number} waiting 每次调用的最小等待周期
- */
-function throttle(func,waiting) {
-	var previous = 0;
-	
-	// 创建一个func的wrapper，如要是解耦func与previous等变量
-	var later = function() {
-		// 刷新previous
-		previous = (new Date()).getTime();
-		// 执行调用
-		func();	
-	}
-	// 返回一个被控制了调用频率的
-	return function() {
-		// 获得当前时间
-	    var now = (new Date()).getTime();
-	    // 获得需要等待的时间
-	    var remain = waiting - (now - previous);
-	    console.log("need waiting " + remain + " ms");
-	    // 判断是否立即执行
-	    if (remain <= 0) {
-	      console.log("immediately");
-	      later();
- 	    } else {
-	      console.log("delayed");
-	      setTimeout(later, remain);
-	    }
-	}
-}
-
-// 现在，刷新previous不再需要耦合到sendQuery中
-var sendQuery = function() {
-	console.log("sending query");
-}
-
-delayedQuery = throttle(sendQuery,1000);
-```
-
 [查看演示](https://jsfiddle.net/softshot/r6uh3xug/2/)
 
 
@@ -273,7 +231,9 @@ underscore中的 `throttle` 函数提供了第三个参数 `options` 来进行�
 
 2. `trailing`：是否设置 `节流后缘--trailing edge` ，后缘的作用是：当最近一次尝试调用 `func` 时，如果 `func` 不能立即执行，会延后 `func` 的执行，默认为 `true`。
 
-这两个配置会带来总共四种组合，通过[这个演示](https://jsfiddle.net/softshot/Lakgk99q/9/)，观察不同组合的效果。
+这两个配置会带来总共四种组合，通过以下演示，观察不同组合的效果：
+
+[演示]((https://jsfiddle.net/softshot/Lakgk99q/9/)
 
 -----------------------------
 
