@@ -27,7 +27,7 @@
    * [上下文绑定](function/上下文绑定.md)
    * [偏函数](function/偏函数.md)
    * [缓存](function/缓存.md)
-   * 延时执行
+   * [延时执行](function/延时执行.md)
    * 函数组合
    * throttle与debounce
    * 指定调用次数
