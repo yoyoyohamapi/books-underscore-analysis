@@ -29,7 +29,7 @@
    * [缓存](function/缓存.md)
    * [延时执行](function/延时执行.md)
    * [throttle与debounce](function/throttle与debounce.md)
-   * 函数组合
+   * [函数组合](function/函数组合.md)
    * 指定调用次数
 * [underscore对象篇](object/README.md)
 * [underscore实用工具篇](utility/README.md)
