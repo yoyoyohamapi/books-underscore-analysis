@@ -29,9 +29,9 @@ var sendQuery = function(complete) {
 }
 
 var complete = function() {
-   // 在回调中， 我们刷新标记量
-   isQuerying = false;
-   console.log("completed");
+  // 在回调中， 我们刷新标记量
+  isQuerying = false;
+  console.log("completed");
 }
 
 $("#queryBtn").click(function(){sendQuery(complete);});
@@ -71,22 +71,22 @@ var previous = 0； // 记录上次执行的时间点
 var waiting = 1000; // 需要等待的时间
 
 var sendQuery = function() {
-	// 执行的时候， 刷新previous
-	previous = (new Date()).getTime();	
-	console.log("sending query");
+  // 执行的时候， 刷新previous
+  previous = (new Date()).getTime();	
+  console.log("sending query");
 }
 
 var func = function() {
-	// 获得当前时间
-	var now = (new Date()).getTime();
-	// 获得需要等待的时间
-	var remain = waiting-(now-previous);
-	// 判断是否立即执行
-	if(remain<=0) {
-		sendQuery();		
-	} else {
-		setTimeout(sendQuery, remain);
-	}		
+  // 获得当前时间
+  var now = (new Date()).getTime();
+  // 获得需要等待的时间
+  var remain = waiting-(now-previous);
+  // 判断是否立即执行
+  if(remain<=0) {
+      sendQuery();		
+  } else {
+      setTimeout(sendQuery, remain);
+  }
 }
 ```
 
@@ -141,62 +141,62 @@ $("#queryBtn").click(delayedQuery);
 
 ```javascript
 _.throttle = function (func, wait, options) {
-    // timeout标识最近一次被追踪的调用
-    // context和args缓存func执行时需要的上下文，result缓存func执行结果
-    var timeout, context, args, result;
-    // 最近一次func被调用的时间点
-    var previous = 0;
-    if (!options) options = {};
+  // timeout标识最近一次被追踪的调用
+  // context和args缓存func执行时需要的上下文，result缓存func执行结果
+  var timeout, context, args, result;
+  // 最近一次func被调用的时间点
+  var previous = 0;
+  if (!options) options = {};
 
-    // 创建一个延后执行的函数包裹住func的执行过程
-    var later = function () {
-        // 执行时，刷新最近一次调用时间
-        previous = options.leading === false ? 0 : _.now();
-        // 清空为此次执行设置的定时器
-        timeout = null;
-        result = func.apply(context, args);
-        if (!timeout) context = args = null;
-    };
+  // 创建一个延后执行的函数包裹住func的执行过程
+  var later = function () {
+      // 执行时，刷新最近一次调用时间
+      previous = options.leading === false ? 0 : _.now();
+      // 清空为此次执行设置的定时器
+      timeout = null;
+      result = func.apply(context, args);
+      if (!timeout) context = args = null;
+  };
 
-    // 返回一个throttle化的函数
-    var throttled = function () {
-        // 我们尝试调用func时，会首先记录当前时间戳
-        var now = _.now();
-        // 是否是第一次调用
-        if (!previous && options.leading === false) previous = now;
-        // func还要等待多久才能被调用 = 预设的最小等待期-（当前时间-上一次调用的时间）
-        var remaining = wait - (now - previous);
-        // 记录执行时需要的上下文和参数
-        context = this;
-        args = arguments;
-        // 如果计算后能被立即执行
-        if (remaining <= 0 || remaining > wait) {
-            // 清除之前的设置的延时执行，就不存在某些回调一同发生的情况了
-            if (timeout) {
-                clearTimeout(timeout);
-                timeout = null;
-            }
-            // 刷新最近一次func调用的时间点
-            previous = now;
-            // 执行func调用
-            result = func.apply(context, args);
-            // 再次检查timeout，因为func执行期间可能有新的timeout被设置，如果timeout被清空了，代表不再有等待执行的func，也清空context和args
-            if (!timeout) context = args = null;
-        } else if (!timeout && options.trailing !== false) {
-            // 如果设置了trailing edge，那么暂缓此次调用尝试的执行
-            timeout = setTimeout(later, remaining);
-        }
-        return result;
-    };
+  // 返回一个throttle化的函数
+  var throttled = function () {
+      // 我们尝试调用func时，会首先记录当前时间戳
+      var now = _.now();
+      // 是否是第一次调用
+      if (!previous && options.leading === false) previous = now;
+      // func还要等待多久才能被调用 = 预设的最小等待期-（当前时间-上一次调用的时间）
+      var remaining = wait - (now - previous);
+      // 记录执行时需要的上下文和参数
+      context = this;
+      args = arguments;
+      // 如果计算后能被立即执行
+      if (remaining <= 0 || remaining > wait) {
+          // 清除之前的设置的延时执行，就不存在某些回调一同发生的情况了
+          if (timeout) {
+              clearTimeout(timeout);
+              timeout = null;
+          }
+          // 刷新最近一次func调用的时间点
+          previous = now;
+          // 执行func调用
+          result = func.apply(context, args);
+          // 再次检查timeout，因为func执行期间可能有新的timeout被设置，如果timeout被清空了，代表不再有等待执行的func，也清空context和args
+          if (!timeout) context = args = null;
+      } else if (!timeout && options.trailing !== false) {
+          // 如果设置了trailing edge，那么暂缓此次调用尝试的执行
+          timeout = setTimeout(later, remaining);
+      }
+      return result;
+  };
 
-    // 不再控制函数执行调用频率
-    throttled.cancel = function () {
-        clearTimeout(timeout);
-        previous = 0;
-        timeout = context = args = null;
-    };
+  // 不再控制函数执行调用频率
+  throttled.cancel = function () {
+      clearTimeout(timeout);
+      previous = 0;
+      timeout = context = args = null;
+  };
 
-    return throttled;
+  return throttled;
 };
 ```
 
@@ -252,38 +252,38 @@ underscore中的 `throttle` 函数提供了第三个参数 `options` 来进行�
 
 ```javascript
 _.debounce = function (func, wait, immediate) {
-    var timeout, result;
+  var timeout, result;
 
-    var later = function (context, args) {
-        timeout = null;
-        if (args) result = func.apply(context, args);
-    };
+  var later = function (context, args) {
+      timeout = null;
+      if (args) result = func.apply(context, args);
+  };
 
-    var debounced = restArgs(function (args) {
-        // 每次新的尝试调用func，会使抛弃之前等待的func
-        if (timeout) clearTimeout(timeout);
-        // 如果允许新的调用尝试立即执行，
-        if (immediate) {
-            // 如果之前尚没有调用尝试，那么此次调用可以立马执行，否则就需要等待
-            var callNow = !timeout;
-            // 刷新timeout
-            timeout = setTimeout(later, wait);
-            // 如果能被立即执行，立即执行
-            if (callNow) result = func.apply(this, args);
-        } else {
-            // 否则，这次尝试调用会延时wait个时间
-            timeout = _.delay(later, wait, this, args);
-        }
+  var debounced = restArgs(function (args) {
+      // 每次新的尝试调用func，会使抛弃之前等待的func
+      if (timeout) clearTimeout(timeout);
+      // 如果允许新的调用尝试立即执行，
+      if (immediate) {
+          // 如果之前尚没有调用尝试，那么此次调用可以立马执行，否则就需要等待
+          var callNow = !timeout;
+          // 刷新timeout
+          timeout = setTimeout(later, wait);
+          // 如果能被立即执行，立即执行
+          if (callNow) result = func.apply(this, args);
+      } else {
+          // 否则，这次尝试调用会延时wait个时间
+          timeout = _.delay(later, wait, this, args);
+      }
 
-        return result;
-    });
+      return result;
+  });
 
-    debounced.cancel = function () {
-        clearTimeout(timeout);
-        timeout = null;
-    };
+  debounced.cancel = function () {
+      clearTimeout(timeout);
+      timeout = null;
+  };
 
-    return debounced;
+  return debounced;
 };
 ```
  
@@ -296,8 +296,8 @@ _.debounce = function (func, wait, immediate) {
 一定要记住，`debounce` 满足的是：
 > 高频下只响应一次
 
-1. 遇上疯狂打字员，在输入框快速输入文字（高频），但是我们只想在其完全停止输入时再对输入文字做出处理（一次）。
-2. AJAX，多数场景下，每个异步请求在短时间只能响应一次。比如下拉刷新，不停的到底（高频），但只发送一次ajax请求（一次）。
+1. 遇上疯狂打字员：在输入框快速输入文字（高频），但是我们只想在其完全停止输入时再对输入文字做出处理（一次）。
+2. AJAX：多数场景下，每个异步请求在短时间只能响应一次。比如下拉刷新，不停的到底（高频），但只发送一次ajax请求（一次）。
 
 #### throttle的应用场景
 
