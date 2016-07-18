@@ -26,7 +26,7 @@
 * [underscore函数篇](function/README.md)
    * [上下文绑定](function/上下文绑定.md)
    * [偏函数](function/偏函数.md)
-   * 缓存
+   * [缓存](function/缓存.md)
    * 延时执行
    * 函数组合
    * throttle与debounce
