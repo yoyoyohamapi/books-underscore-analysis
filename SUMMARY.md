@@ -31,6 +31,7 @@
    * [throttle与debounce](function/throttle与debounce.md)
    * [函数组合](function/函数组合.md)
    * [指定调用次数](function/指定调用次数.md)
+   * 拾遗
 * [underscore对象篇](object/README.md)
 * [underscore实用工具篇](utility/README.md)
 
