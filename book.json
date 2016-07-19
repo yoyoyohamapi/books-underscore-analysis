@@ -1,5 +1,5 @@
 {
-    "plugins": ["mathjax", "jsfiddle", "mermaid"],
+    "plugins": ["mathjax", "mermaid", "jsfiddle"],
     "pluginsConfig": {
           "jsfiddle":{
             "type":"script"
