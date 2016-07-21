@@ -22,8 +22,11 @@
 不同于数学当中的集合，在underscore中，简单地定义集合为__一个可迭代的序列__，相较于原生的ES5提供的迭代方法，underscore不仅能够对数组进行迭代，还能够对对象进行迭代。
 
 ### [underscore array（数组）篇](array/README.md)
+这一章节我们将介绍underscore中提供的针对数组的操作，部分API已经在集合篇中有过阐述，不再赘述。
 
 ### [undersocre function（函数）篇](function/README.md)
+在js中，函数是第一型的对象，函数在js中的地位因此可见一斑。这一章节也是我认为最为重要的一章，在本章中，能够见到许多实用的针对函数的操作，以及函数式编程中的重要概念。
+
 ### [underscore object（对象）篇](object/README.md)
 ### [underscore utility（实用工具）篇](utility/README.md)
 
