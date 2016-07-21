@@ -37,6 +37,6 @@
    * 克隆与扩展
    * 白名单
    * 对象相等性判断
-   * 是什么？
+   * [是什么？](object/shi_shi_yao_ff1f.md)
 * [underscore实用工具篇](utility/README.md)
 
