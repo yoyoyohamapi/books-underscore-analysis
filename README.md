@@ -19,7 +19,10 @@
 之后，我们按照官方API文档的顺序来阐述underscore的源码实现，由于很多API的实现可以举一反三，所以，本书并不会啰嗦的阐述每个api的实现，如果真的由此需求，可以配合我写的[underscore中文注释](https://github.com/yoyoyohamapi/underscore/blob/master/underscore.js)辅助阅读。
 
 ### [undersocre colletion（集合）篇](collection/README.md)
+不同于数学当中的集合，在underscore中，简单地定义集合为__一个可迭代的序列__，相较于原生的ES5提供的迭代方法，underscore不仅能够对数组进行迭代，还能够对对象进行迭代。
+
 ### [underscore array（数组）篇](array/README.md)
+
 ### [undersocre function（函数）篇](function/README.md)
 ### [underscore object（对象）篇](object/README.md)
 ### [underscore utility（实用工具）篇](utility/README.md)
