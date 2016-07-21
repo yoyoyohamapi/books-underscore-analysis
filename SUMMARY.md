@@ -34,5 +34,6 @@
    * [拾遗](function/拾遗.md)
 * [underscore对象篇](object/README.md)
    * 属性操作
+   * 克隆一个对象
 * [underscore实用工具篇](utility/README.md)
 
