@@ -37,6 +37,6 @@
    * 克隆与扩展
    * 白名单
    * 对象相等性判断
-   * [是什么？](object/是什么.md)
+   * [类型判断](object/是什么.md)
 * [underscore实用工具篇](utility/README.md)
 
