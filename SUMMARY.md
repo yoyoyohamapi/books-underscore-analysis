@@ -33,5 +33,6 @@
    * [指定调用次数](function/指定调用次数.md)
    * [拾遗](function/拾遗.md)
 * [underscore对象篇](object/README.md)
+   * 属性操作
 * [underscore实用工具篇](utility/README.md)
 
