@@ -34,7 +34,7 @@
    * [拾遗](function/拾遗.md)
 * [underscore对象篇](object/README.md)
    * [属性操作](object/属性操作.md)
-   * 克隆与扩展
+   * [克隆与扩展](object/克隆与扩展.md)
    * 白名单
    * 对象相等性判断
    * [类型判断](object/类型判断.md)
