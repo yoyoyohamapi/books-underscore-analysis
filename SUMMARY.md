@@ -35,7 +35,7 @@
 * [underscore对象篇](object/README.md)
    * [属性操作](object/属性操作.md)
    * [克隆与扩展](object/克隆与扩展.md)
-   * 白名单
+   * [白名单](object/白名单.md)
    * 对象相等性判断
    * [类型判断](object/类型判断.md)
 * [underscore实用工具篇](utility/README.md)
