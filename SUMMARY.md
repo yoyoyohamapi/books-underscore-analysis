@@ -33,6 +33,7 @@
    * [指定调用次数](function/指定调用次数.md)
    * [拾遗](function/拾遗.md)
 * [underscore对象篇](object/README.md)
+   * Object(obj)
    * [属性操作](object/属性操作.md)
    * [克隆与扩展](object/克隆与扩展.md)
    * [白名单](object/白名单.md)
