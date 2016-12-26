@@ -43,3 +43,7 @@ Summary
 -	[underscore实用工具篇](utils/README.md)
 	-	[工具汇总](utils/工具汇总.md)
 	-	[模板引擎](utils/模板引擎.md)
+-	[underscore内容拾遗](supply/README.md)
+	-	[面向对象风格的支持](supply/面向对象风格的支持.md)
+	-	[mixin](supply/mixin.md)
+	-	[链式调用](supply/链式调用.md)
