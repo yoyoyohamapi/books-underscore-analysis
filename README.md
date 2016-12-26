@@ -14,8 +14,6 @@
 章节安排
 --------
 
-本书大致会分为以下章节：
-
 ### [underscore 基础篇](base/README.md)
 
 在基础部分，将会阐述underscore的大致结构及一些广泛用到的内部函数（internal function），这些函数被大量用到了underscore的api实现中，是我们之后理解underscore源码的必须途径。
@@ -36,7 +34,7 @@
 
 ### [underscore 对象篇](object/README.md)
 
-本章中，将介绍underscore中操作对象`{}`的api。
+本章中，将介绍underscore中操作对象的api。
 
 ### [underscore 实用工具篇](utility/README.md)
 
