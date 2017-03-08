@@ -36,7 +36,7 @@
 
 本章中，将介绍underscore中操作对象的api。
 
-### [underscore 实用工具篇](utility/README.md)
+### [underscore 实用工具篇](utils/README.md)
 
 underscore还提供了不少工具函数，来提供一些周边功能，如字符逃逸等。但其中最重要的是其提供的模板引擎工具，我将会花费很大笔墨对其进行描述
 
