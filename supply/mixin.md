@@ -1,11 +1,12 @@
-mixin
-=====
+# mixin
 
 mixin（混入）模式是增加代码复用度的一个广泛使用的设计模式，什么是mixin模式，简言之，就是向一个对象混入一系列方法，使之具备更强大的能力，这一些列方法我们又会包裹在一个称之为mixin的对象中，这样，其他对象也能够给通过该mixin进行扩展：
 
-![mixin](https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/httpatomoreillycomsourceoreillyimages1326900.png)
+![](https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/httpatomoreillycomsourceoreillyimages1547815.png)
 
 相较于继承，我们发现，mixin的对象组织更加松散，因而也就不用面对如何定义类，类的抽象程度到什么地步诸如此类的在继承中出现的问题。反正想要功能，ok，直接混入一下就好。
+
+> ### 图片摘自\[[Learning JavaScript Design Patterns by Addy Osmani](https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/)\]\(https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/ch09s13.html\)
 
 ### mixin模式的传统实现
 
@@ -41,7 +42,7 @@ function Dialog(title) {
     this.title = title;
 }
 
-Dialog.prototype.confirm() {
+Dialog.prototype.confirm = function () {
     console.log('confirm?');
 }
 
@@ -165,5 +166,8 @@ _([1,2,3]).map(n => n*2);
 
 ### 参考资料
 
--	[A fresh look at JavaScript Mixins](https://javascriptweblog.wordpress.com/2011/05/31/a-fresh-look-at-javascript-mixins/)
--	[ Learning JavaScript Design Patterns - Mixin](https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/ch09s13.html)
+* [A fresh look at JavaScript Mixins](https://javascriptweblog.wordpress.com/2011/05/31/a-fresh-look-at-javascript-mixins/)
+* [ Learning JavaScript Design Patterns - Mixin](https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/ch09s13.html)
+
+
+
