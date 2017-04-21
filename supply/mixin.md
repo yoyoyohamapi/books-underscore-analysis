@@ -6,7 +6,7 @@ mixin（混入）模式是增加代码复用度的一个广泛使用的设计模
 
 相较于继承，我们发现，mixin的对象组织更加松散，因而也就不用面对如何定义类，类的抽象程度到什么地步诸如此类的在继承中出现的问题。反正想要功能，ok，直接混入一下就好。
 
-> ### 图片摘自\[[Learning JavaScript Design Patterns by Addy Osmani](https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/)\]\(https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/ch09s13.html\)
+> ### 图片摘自[Learning JavaScript Design Patterns by Addy Osmani](#图片摘自learning-javascript-design-patterns-by-addy-osmanihttpswwwsafaribooksonlinecomlibraryviewlearning-javascript-design9781449334840ch09s13html)
 
 ### mixin模式的传统实现
 
@@ -69,7 +69,7 @@ function modalMixin() {
 }
 ```
 
-通过委托（delegate）模式的`Function.prototype.call`获得`Function.prototype.apply`进行对象和mixin的绑定：
+通过委托（delegate）模式的 `Function.prototype.call`  或者`Function.prototype.apply`进行对象和 mixin 的绑定
 
 ```js
 modalMixin.call(Dialog.prototype);
