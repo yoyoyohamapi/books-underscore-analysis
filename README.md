@@ -14,9 +14,9 @@
 
 ### [underscore 基础篇](base/README.md)
 
-在基础部分，将会阐述 underscore 的大致结构及一些广泛用到的内部函数（internal function），这些函数被大量用到了 underscore 的 api 实现中，是我们之后理解 underscore 源码的必须途径。
+在基础部分，将会阐述 underscore 的大致结构及一些广泛用到的内部函数（internal function），这些函数被大量用到了 underscore 的 API 实现中，是我们之后理解 underscore 源码的必须途径。
 
-之后，我们按照官方 API 文档的顺序来阐述 underscore 的源码实现，由于很多 API 的实现可以举一反三，所以，本书并不会啰嗦的阐述每个 api 的实现，如果真的由此需求，可以配合我写的 [underscore 中文注释](https://github.com/yoyoyohamapi/underscore/blob/master/underscore.analysis.js) 辅助阅读。
+之后，我们按照官方 API 文档的顺序来阐述 underscore 的源码实现，由于很多 API 的实现可以举一反三，所以，本书并不会啰嗦的阐述每个 API 的实现，如果真的由此需求，可以配合我写的 [underscore 中文注释](https://github.com/yoyoyohamAPI/underscore/blob/master/underscore.analysis.js) 辅助阅读。
 
 ### [underscore 集合篇](collection/README.md)
 
@@ -32,7 +32,7 @@
 
 ### [underscore 对象篇](object/README.md)
 
-本章中，将介绍 underscore 中操作对象的 api。
+本章中，将介绍 underscore 中操作对象的 API。
 
 ### [underscore 实用工具篇](utils/README.md)
 
@@ -47,4 +47,4 @@ underscore 还提供了不少工具函数，来提供一些周边功能，如字
 
 本文基于 underscore 的 [1.8.3 版本](https://github.com/jashkenas/underscore/tree/1.8.3) 进行分析, 在阅读官方文档时遇到的困难时，特别感谢 [underscore 中文教程](http://www.css88.com/doc/underscore/) 提供的帮助。
 
-> 欢迎转载或者引用，但请注明出处，这算是对我工作成果的认可和尊重。也欢迎拍砖，相应问题可以发到 [discussion](https://www.gitbook.com/book/yoyoyohamapi/undersercore-analysis/discussions)，我会最快时间进行更正或者解答。
+> 欢迎转载或者引用，但请注明出处，这算是对我工作成果的认可和尊重。也欢迎拍砖，相应问题可以发到 [discussion](https://www.gitbook.com/book/yoyoyohamAPI/undersercore-analysis/discussions)，我会最快时间进行更正或者解答。
