@@ -1,26 +1,22 @@
-// 测试一般函数绑定
-function add(a, b) {
-    var result = a + b;
-    console.log(this.name + ' wanna get add result:' + result);
-}
+var collectNonEnumProps = function (obj, keys) {
+    var nonEnumIdx = nonEnumerableProps.length;
+    // 通过对象构造函数获得对象的原型
+    var constructor = obj.constructor;
+    // 如果构造函数合法，且具有`prototype`属性，那么`prototype`就是该obj的原型
+    // 否则默认obj的原型为Object.prototype
+    var proto = _.isFunction(constructor) && constructor.prototype || ObjProto;
 
-var obj = {
-    name: 'wxj'
+    // 如果对象有constructors属性，且当前的属性集合不存在构造函数这一属性
+    var prop = 'constructor';
+    // 需要将constructor属性添加到属性集合中
+    if (_.has(obj, prop) && !_.contains(keys, prop)) keys.push(prop);
+
+    // 将不可枚举的属性也添加到属性集合中
+    while (nonEnumIdx--) {
+        prop = nonEnumerableProps[nonEnumIdx];
+        // 注意，添加的属性只能是自有属性 （obj[prop] !== proto[prop]）
+        if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys, prop)) {
+            keys.push(prop);
+        }
+    }
 };
-
-var bound = _.bind(add, obj, 3, 4);
-bound();
-// => "wxj wanna get add result:7"
-
-// 测试绑定函数作为构造函数使用
-function constructor() {
-    console.log('my name is:' + this.name);
-}
-
-var Person = _.bind(constructor, obj);
-// 一般函数使用
-Person();
-// => "my name is wxj"
-
-// 构造函数使用
-var person = new Person();
