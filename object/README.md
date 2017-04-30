@@ -1,4 +1,4 @@
-underscore对象篇
-================
+underscore 对象篇
+=================
 
-本章中，将介绍underscore中操作对象的api。
+本章中，将介绍 underscore 中操作对象的 API。

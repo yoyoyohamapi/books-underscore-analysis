@@ -1,14 +1,21 @@
-## rest参数
-什么是rest参数，就是自由参数，松散参数，这里的自由和松散都是值得参数个数是随意的，与之对应的是—__固定参数__。
+rest 参数
+=========
 
-### 从一个加法器开始说起
+什么是 rest 参数，就是自由参数，松散参数，这里的自由和松散都是值得参数个数是随意的，与之对应的是 -- **固定参数**。
+
+从一个加法器开始说起
+--------------------
+
 现在，我们完成一个函数，该函数支持对两个数进行求和，并将结果返回。
+
 ```js
 function add(a,b){
     return a+b;
 }
 ```
+
 但我们想对更多的数求和呢？那我们首先想到用数组来传递。
+
 ```js
 function add(numbers){
   return _.reduce(numbers, function(accum,current){
@@ -17,7 +24,8 @@ function add(numbers){
 }
 ```
 
-或者直接利用js中的`arguments`:
+或者直接利用 JavaScript 中的 `arguments`:
+
 ```js
 function add(){
   var numbers = Array.prototype.slice.call(arguments);
@@ -27,7 +35,9 @@ function add(){
 }
 add(4,3,4,1,1); // => 13
 ```
+
 现在，我们获得了一个更加自由的加法函数。但是，如果现在的需求变为必须传递至少一个数到加法器呢？
+
 ```js
 function add(a){
   var rest = Array.prototype.slice.call(arguments, 1);
@@ -38,11 +48,13 @@ function add(a){
 add(2,3,4,5); // => 14
 ```
 
-在这个`add`实现中，我们已经开始有了rest参数的雏形，除了自由和松散，rest还有一层意思，就是他的字面意思--__剩余__，所以在许多语言环境中，rest参数从最后一个形参开始，表示剩余的参数。
+在这个 `add` 实现中，我们已经开始有了 rest 参数的雏形，除了自由和松散，rest 还有一层意思，就是他的字面意思 -- **剩余**，所以在许多语言环境中，rest 参数从最后一个形参开始，表示剩余的参数。
 
-### 更理想的方式
-然而最后一个`add`函数还是把对rest参数的获取耦合到了`add`的执行逻辑中，同时，这样做还会引起歧义，因为在add函数的使用者看来，`add`函数似乎只需要一个参数`a`。
-而在python，java等语言中，rest参数是需要显示声明的，这种生命能让函数调用者知道哪些参数是rest参数，比如python中通过`*`标识rest参数：
+更理想的方式
+------------
+
+然而最后一个 `add` 函数还是把对 rest 参数的获取耦合到了 `add` 的执行逻辑中，同时，这样做还会引起歧义，因为在 add 函数的使用者看来，`add` 函数似乎只需要一个参数 `a`。 而在 python，java 等语言中，rest 参数是需要显示声明的，这种生命能让函数调用者知道哪些参数是 rest 参数，比如 python 中通过 `*` 标识 rest 参数：
+
 ```python
 def add(a,*numbers):
     sum = a
@@ -51,7 +63,8 @@ def add(a,*numbers):
     return sum
 ```
 
-所以，更理想的方式是，提供一个更直观的方式让开发者知道那个参数是rest参数，比如，现在有一个函数，其支持rest参数，那么我们总是假定这类函数的最后一个参数是rest参数, 为此，我们需要创建一个工厂函数，他接受一个现有的函数，包装该函数，使之支持rest参数：
+所以，更理想的方式是，提供一个更直观的方式让开发者知道哪个参数是 rest 参数，比如，现在有一个函数，其支持 rest 参数，那么我们总是假定这类函数的最后一个参数是 rest 参数, 为此，我们需要创建一个工厂函数，他接受一个现有的函数，包装该函数，使之支持 rest 参数：
+
 ```js
 function add(a, rest){
   return _.reduce(rest,function(accum, current){
@@ -81,12 +94,12 @@ function genRestFunc(func) {
 }
 addWithRest = genRestFunc(add);
 
-addWithRest(1,2,3,4); // => 10 
+addWithRest(1,2,3,4); // => 10
 ```
 
-> 记住，在js中，函数也是对象，并且我们能够通过函数对象的`length`属性获得其形参个数
+> 记住，在 JavaScript 中，函数也是对象，并且我们能够通过函数对象的 `length` 属性获得其形参个数
 
-最后，我们来看一下underscore的官方实现，他还暴露一个`_.restArgs`函数，通过给该函数传递一个`func`参数，能够使得`func`支持rest参数：
+最后，我们来看一下 underscore 的官方实现，他暴露了一个 `_.restArgs` 函数，通过给该函数传递一个 `func` 参数，能够使得 `func` 支持 rest 参数：
 
 ```js
 /**
@@ -141,6 +154,7 @@ var restArgs = function (func, startIndex) {
 ```
 
 测试一下
+
 ```js
 function add(a, rest){
   return _.reduce(rest,function(accum, current){
@@ -152,10 +166,11 @@ var addWithRest = _.restArgs(add);
 addWithRest(1,2,3,4); // => 10
 ```
 
-> 注意，restArgs函数也是underscore最新的master分支上才支持的，默认的1.8.3不具备这个功能。
+> 注意，`restArgs` 函数也是 underscore 最新的 master 分支上才支持的，1.8.3 版本不具备这个功能。
 
-### ES6中的rest
-现在，最新的[ES6标准](http://ariya.ofilabs.com/2013/03/es6-and-rest-parameter.html)已经能够支持rest参数，他的用法如下：
+### ES6 中的 rest
+
+现在，最新的 [ES6 标准](http://ariya.ofilabs.com/2013/03/es6-and-rest-parameter.html) 已经能够支持 rest 参数，他的用法如下：
 
 ```js
 function f(x, ...y) {
@@ -165,4 +180,4 @@ function f(x, ...y) {
 f(3, "hello", true) == 6
 ```
 
-> 所以如果你的项目能够用到es6了，就用es6的写法吧，毕竟他是标准。
+> 所以如果你的项目能够用到 ES6 了，就用 ES6 的写法吧，毕竟他是标准。

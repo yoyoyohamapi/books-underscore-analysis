@@ -1,13 +1,19 @@
-## 模拟一段sql
-有过关系型数据库开发经验的同学一定不会对SQL语句陌生，看一条最熟悉的SQL语句
+模拟一段 SQL
+============
+
+有过关系型数据库开发经验的同学一定不会对 SQL 语句陌生，看一条最熟悉的 SQL 语句
+
 ```sql
 SELECT username, id FROM users where age<30 group by sex;
 ```
 
-下面会分别通过__面向对象__的思维和__函数式编程__的思维来模拟上面语句。
+下面会分别通过**面向对象**的思维和**函数式编程**的思维来模拟上面语句。
 
-### 面向对象（OO）
-在面向对象的世界中，我们首先需要一个类，我们称之为`SQL`，实例化`SQL`对象时，我们需要传递给他`table`表明需要操作的表。 并且，我们向该“类”的原型中添加`where`，`select`等方法，为了方便，我们还支持到链式调用:
+面向对象（OO）
+--------------
+
+在面向对象的世界中，我们首先需要一个类，我们称之为 `SQL`，实例化 `SQL` 对象时，我们需要传递给他 `table` 表明需要操作的表。 并且，我们向该 “类” 的原型中添加 `where`，`select` 等方法，为了方便，我们还支持到链式调用:
+
 ```js
 function SQL(table){
     this.table = table;
@@ -15,7 +21,7 @@ function SQL(table){
     this._getRows = function() {
       return this._result?this._result: this.table;
     }
-    
+
     this._doSelect = function(rows, keys) {
       return rows.map(function(row) {
         return _.keys(row).reduce(function(elem, key) {
@@ -79,7 +85,8 @@ SQL.prototye.getResult = function() {
 
 ```
 
-__用例__：
+**用例**：
+
 ```js
 var users = [
   {id: 0, name: 'wxj', age: 18, sex: 'male'},
@@ -112,10 +119,13 @@ var result = sql.groupBy('sex').where(predicate).select(['username', 'id']).getR
 //}
 ```
 
-### 函数式（FP）
-可以看到，在面向对象的抽象中，我们为了做一个查询，却造了太多不需要的东西，比如“类”，比如实例化对象的过程，同时，因为我们将`table`保存为对象的成员（可以视作需要维护的内部状态），且成员方法都存在着改变`table`的可能，所以就导致了我们的成员方法不是[纯函数](https://zh.wikipedia.org/wiki/%E7%BA%AF%E5%87%BD%E6%95%B0)（输入一定，则输出一定的函数），也就导致这些成员方法难于测试。
+函数式（FP）
+------------
 
-因而，我们将该用函数的眼光来抽象`where`，`groupBy`， `select`等过程，使得各自无关，并且保持纯度：
+可以看到，在面向对象的抽象中，我们为了做一个查询，却造了太多不需要的东西，比如 “类”，比如实例化对象的过程。同时，因为我们将 `table` 保存为对象的成员（可以视作需要维护的内部状态），且成员方法都存在着改变 `table` 的可能，所以就导致了我们的成员方法不是[ **纯函数** ](https://zh.wikipedia.org/wiki/%E7%BA%AF%E5%87%BD%E6%95%B0)（输入一定，则输出一定的函数），也就导致这些成员方法难于测试。
+
+因而，我们将该用函数的眼光来抽象 `where`、`groupBy`、`select`等过程，使得各自无关，并且保持纯度：
+
 ```js
 // 限定
 function where(rows, predicate) {
@@ -165,18 +175,20 @@ function select(rows, keys) {
     });
   } else {
     return rows;
-  } 
+  }
 }
 ```
 
-我们还可以整合下这三个方法：
+我们还可以整合这三个方法为一个查询方法：
+
 ```js
 function query(table, by, predicate, keys) {
   return select(where(groupBy(table, by), predicate), keys);
 }
 ```
 
-现在，完成类似查询时，我们不再需要实例化对象，并且`query`也保持了纯度：
+现在，完成类似查询时，我们不再需要实例化对象，并且 `query` 也保持了纯度：
+
 ```js
 var users = [
   {id: 0, name: 'wxj', age: 18, sex: 'male'},
@@ -207,18 +219,25 @@ var result = query(users, 'sex', predicate, ['name', 'id']);
 //}
 ```
 
-### underscore中的实现
-`_.where`，`_.select`函数在前面的章节已有过相应介绍，故不再重复赘述。接下来我们将认识到以下API：
-- `_.groupBy`
-- `_.indexBy`
-- `_.countBy`
-- `_.partition`
+underscore 中的实现
+-------------------
 
-这几个函数都由内部函数`group`所创建，所以我们首先看到该函数。
-#### `group`
-内置函数`group`接受如下两个参数：
-- `behavior`：获得组别后的行为，即当确定一个分组后，在该分组上施加的行为
-- `partition`：是否是进行划分，即是否是将一个集合一分为二
+`_.where`，`_.select`函数在前面的章节已有过相应介绍，故不再重复赘述。接下来我们将认识到以下API：
+
+-	`_.groupBy`
+-	`_.indexBy`
+-	`_.countBy`
+-	`_.partition`
+
+这几个函数都由内部函数 `group` 所创建，所以我们首先看到该函数。
+
+`group`
+-------
+
+内置函数 `group` 接受如下两个参数：
+
+-	`behavior`：获得组别后的行为，即当确定一个分组后，在该分组上施加的行为
+-	`partition`：是否是进行划分，即是否是将一个集合一分为二
 
 ```js
 var group = function (behavior, partition) {
@@ -239,19 +258,24 @@ var group = function (behavior, partition) {
 };
 ```
 
-`group`将返回一个分组函数，其接受三个参数：
-- `obj`：待分组集合对象
-- `iteratee`：集合迭代器，同样会被内置函数`cb`优化
-- `context`：执行上下文
+`group` 将返回一个分组函数，其接受三个参数：
 
-下面我们看一看各个由`group`所创建的分组函数。
+-	`obj`：待分组集合对象
+-	`iteratee`：集合迭代器，同样会被内置函数 `cb` 优化
+-	`context`：执行上下文
 
-#### `_.groupBy`：对集合按照指定的关键字进行分组
-当`iteratee`确定了一个分组后，`_.groupBy`的行为：
- - 如果分组结果中存在该分组, 将元素追加进该分组
- - 否则新创建一个分组, 并将元素放入
-    
-__源码__：
+下面我们看一看各个由 `group` 所创建的分组函数。
+
+`_.groupBy`：对集合按照指定的关键字进行分组
+-------------------------------------------
+
+当 `iteratee` 确定了一个分组后，`_.groupBy` 的行为是：
+
+-	如果分组结果中存在该分组, 将元素追加进该分组
+-	否则新创建一个分组, 并将元素放入
+
+**源码**：
+
 ```js
 _.groupBy = group(function (result, value, key) {
     if (_.has(result, key)) result[key].push(value); else result[key] = [value];
@@ -259,7 +283,8 @@ _.groupBy = group(function (result, value, key) {
 
 ```
 
-__用例__：
+**用例**：
+
 ```js
 _.groupBy([1.3, 2.1, 2.4], function(num){ return Math.floor(num); });
 // => {1: [1.3], 2: [2.1, 2.4]}
@@ -268,18 +293,23 @@ _.groupBy(['one', 'two', 'three'], 'length');
 // => {3: ["one", "two"], 5: ["three"]}
 ```
 
-#### `_.indexBy`：对集合按照指定的关键字进行索引
-当`iteratee`确定了一个分组后，`_.indexBy`的行为：
-- 设置该分组（索引）的对象为当前元素
+`_.indexBy`：对集合按照指定的关键字进行索引
+-------------------------------------------
 
-__源码__：
+当 `iteratee` 确定了一个分组后，`_.indexBy` 的行为：
+
+-	设置该分组（索引）的对象为当前元素
+
+**源码**：
+
 ```js
 _.indexBy = group(function (result, value, key) {
     result[key] = value;
 });
 ```
 
-__用例__：
+**用例**：
+
 ```js
 var students = [
   {name: 'wxj', age: 18},
@@ -296,19 +326,24 @@ _.indexBy(students, 'age');
 //}
 ```
 
-#### `_.countBy`：分别对分组进行计数
-当`iteratee`确定了一个分组后，`_.countBy`的行为：
-- 如果该分组已存在，则计数加一
-- 否则开始计数
+`_.countBy`：分别对分组进行计数
+-------------------------------
 
-__源码__：
+当 `iteratee` 确定了一个分组后，`_.countBy` 的行为：
+
+-	如果该分组已存在，则计数加一
+-	否则开始计数
+
+**源码**：
+
 ```js
 _.countBy = group(function (result, value, key) {
     if (_.has(result, key)) result[key]++; else result[key] = 1;
 });
 ```
 
-__用例__：
+**用例**：
+
 ```js
 _.countBy([1, 2, 3, 4, 5], function(num) {
   return num % 2 == 0 ? 'even': 'odd';
@@ -316,11 +351,15 @@ _.countBy([1, 2, 3, 4, 5], function(num) {
 // => {odd: 3, even: 2}
 ```
 
-#### `_.partition`：将一个集合一分为二
-当`iteratee`确定了一个分组后，`_.partion`的行为：
-- 将元素放入对应分组
+`_.partition`：将一个集合一分为二
+---------------------------------
 
-__源码__：
+当 `iteratee` 确定了一个分组后，`_.partion` 的行为：
+
+-	将元素放入对应分组
+
+**源码**：
+
 ```js
 _.partition = group(function (result, value, pass) {
     // 分组后的行为,
@@ -328,12 +367,11 @@ _.partition = group(function (result, value, pass) {
 }, true);
 ```
 
-__用例__：
+**用例**：
+
 ```js
 _.partition([0, 1, 2, 3, 4, 5], function(num){
   return num%2 !== 0;
 });
 // => [[1, 3, 5], [0, 2, 4]]
 ```
-
-
