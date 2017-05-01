@@ -3,7 +3,7 @@ mixin
 
 mixin（混入）模式是增加代码复用度的一个广泛使用的设计模式。什么是 mixin 模式，简言之，就是向一个对象混入一系列方法，使之具备更强大的能力，这一些列方法我们又会包裹在一个称之为 mixin 的对象中，这样，其他对象也能够给通过该 mixin进行扩展：
 
-<div style="text-align">
+<div style="text-align:center">
 <img src="https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/httpatomoreillycomsourceoreillyimages1547815.png" width="300"></img>
 </div>
 
@@ -100,7 +100,7 @@ const modalMixin = (function () {
 ```
 
 `_.mixin()`
----------------------------
+-----------
 
 `_.mixin(obj)`：为 underscore 对象混入 `obj` 具有的功能。
 
