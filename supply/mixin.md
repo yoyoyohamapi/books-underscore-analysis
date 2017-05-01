@@ -4,12 +4,12 @@ mixin
 mixin（混入）模式是增加代码复用度的一个广泛使用的设计模式。什么是 mixin 模式，简言之，就是向一个对象混入一系列方法，使之具备更强大的能力，这一些列方法我们又会包裹在一个称之为 mixin 的对象中，这样，其他对象也能够给通过该 mixin进行扩展：
 
 <div style="text-align">
-<img src="https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/httpatomoreillycomsourceoreillyimages1547815.png" width="500"></div>
+<img src="https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/httpatomoreillycomsourceoreillyimages1547815.png" width="300"></img>
 </div>
 
 相较于继承，我们发现，mixin 的对象组织更加松散，因而也就不用面对如何定义类，类的抽象程度到什么地步诸如此类的在继承中出现的问题。反正想要功能，ok，直接混入一下就好。
 
-> 图片摘自[Learning JavaScript Design Patterns by Addy Osmani](https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/ch09s13.html)
+> 图片摘自 [Learning JavaScript Design Patterns by Addy Osmani](https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/ch09s13.html)
 
 mixin 模式的一般实现
 --------------------
