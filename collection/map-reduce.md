@@ -10,11 +10,19 @@ map-reduce 由如下两个独立的部分组成：
 
 -	**map（映射）**：一个映射过程就是将各个元素，**按照一定的规则**，逐个映射为新的元素。这是一个 **一一对应** 的过程。用数学公式描述就是（其中，函数 $$ f $$ 就是这个规则）：
 
-$$\left[ \begin{array}{c} newElem1 \\ newElem2 \\ newElem3 \\ ... \\ newElemN \end{array} \right]\ = f(\left[ \begin{array}{c} elem1 \\ elem2 \\ elem3 \\ ... \\ elemN \end{array} \right]) $$
+$$
+
+\left[ \begin{array}{c} newElem1 \\ newElem2 \\ newElem3 \\ ... \\ newElemN \end{array} \right]\ = f(\left[ \begin{array}{c} elem1 \\ elem2 \\ elem3 \\ ... \\ elemN \end{array} \right])
+
+$$
 
 -	**reduce （规约）**：一个规约过程仍然需要迭代指定列表的每个元素，然后仍然 **按照一定规则**，合并这些元素到一个目标对象上。这是一个 **由多至一** 的过程，或者说是一个 **逐步累积** 的过程：
 
-$$ newElem = f(\left[ \begin{array}{c} elem1 \\ elem2 \\ elem3 \\ ... \\ elemN \end{array} \right]) $$
+$$
+
+newElem = f(\left[ \begin{array}{c} elem1 \\ elem2 \\ elem3 \\ ... \\ elemN \end{array} \right])
+
+$$
 
 ### map 在 underscore 中的实现
 

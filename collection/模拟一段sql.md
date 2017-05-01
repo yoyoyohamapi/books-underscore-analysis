@@ -7,7 +7,7 @@
 SELECT username, id FROM users where age<30 group by sex;
 ```
 
-下面会分别通过**面向对象**的思维和**函数式编程**的思维来模拟上面语句。
+下面会分别通过 **面向对象** 的思维和 **函数式编程** 的思维来模拟上面语句。
 
 面向对象（OO）
 --------------
@@ -19,68 +19,68 @@ function SQL(table){
     this.table = table;
     this._result = null;
     this._getRows = function() {
-      return this._result?this._result: this.table;
+        return this._result?this._result: this.table;
     }
 
     this._doSelect = function(rows, keys) {
-      return rows.map(function(row) {
-        return _.keys(row).reduce(function(elem, key) {
-          if (_.indexOf(keys, key) > -1) {
-            elem[key] = row[key];
-          }
-          return elem;
-        }, {});
-      });
+        return rows.map(function(row) {
+            return _.keys(row).reduce(function(elem, key) {
+                if (_.indexOf(keys, key) > -1) {
+                    elem[key] = row[key];
+                }
+                return elem;
+            }, {});
+        });
     }
 }
 
 
 // 投影
 SQL.prototype.select = function(keys) {
-  var rows =  this._getRows();
-  if (_.isArray(rows)){
-    this._result = this._doSelect(rows, keys);
-  } else if(_.isObject(rows)) {
-    this._result = _.keys(rows).map(function(key){
-      return this._doSelect(rows[key], keys);
-    });
-  }
-  return this;
+    var rows =  this._getRows();
+    if (_.isArray(rows)){
+        this._result = this._doSelect(rows, keys);
+    } else if (_.isObject(rows)) {
+        this._result = _.keys(rows).map(function(key) {
+            return this._doSelect(rows[key], keys);
+        });
+    }
+    return this;
 }
 
 // 限定, 这里偷点懒，我们还是用到了高阶函数
 // 直接传递字符串进行parse太复杂
 SQL.prototype.where = function(predicate) {
-  var rows = this._getRows();
-  if (_.isArray(rows)) {
-    this._result =  rows.filter(predicate);
-  } else if(_.isObject(rows)) {
-    this._result = _.keys(rows).reduce(function(groups, group){
-      groups[group] = rows[group].filter(predicate);
-      return groups;
-    }, {});
-  }
-  return this;
+    var rows = this._getRows();
+    if (_.isArray(rows)) {
+        this._result =  rows.filter(predicate);
+    } else if(_.isObject(rows)) {
+        this._result = _.keys(rows).reduce(function(groups, group) {
+            groups[group] = rows[group].filter(predicate);
+            return groups;
+        }, {});
+    }
+    return this;
 }
 
 // 分组
 SQL.prototype.groupBy = function(key) {
-  var rows = this._getRows();
-  this._result = rows.reduce(function(groups, row){
+    var rows = this._getRows();
+    this._result = rows.reduce(function(groups, row){
     // 获得当前key对应的值，如果分组中不存在，则新建
     var group = row[key];
     if(!groups[group]) {
-      groups[group] = [];
+        groups[group] = [];
     }
     groups[group].push(row);
-    return groups;
-  }, {});
-  return this;
+        return groups;
+    }, {});
+    return this;
 }
 
 // 获得结果
 SQL.prototye.getResult = function() {
-  return this._result;
+    return this._result;
 }
 
 ```
@@ -89,19 +89,19 @@ SQL.prototye.getResult = function() {
 
 ```js
 var users = [
-  {id: 0, name: 'wxj', age: 18, sex: 'male'},
-  {id: 1, name: 'john', age: 28, sex: 'male'},
-  {id: 2, name: 'bob', age: 33, sex: 'male'},
-  {id: 3, name: 'tom', age: 22, sex: 'male'},
-  {id: 4, name: 'alice', age: 18, sex: 'female'},
-  {id: 5, name: 'rihana', age: 35, sex: 'female'},
-  {id: 6, name: 'sara', age: 20, sex: 'female'}
+    {id: 0, name: 'wxj', age: 18, sex: 'male'},
+    {id: 1, name: 'john', age: 28, sex: 'male'},
+    {id: 2, name: 'bob', age: 33, sex: 'male'},
+    {id: 3, name: 'tom', age: 22, sex: 'male'},
+    {id: 4, name: 'alice', age: 18, sex: 'female'},
+    {id: 5, name: 'rihana', age: 35, sex: 'female'},
+    {id: 6, name: 'sara', age: 20, sex: 'female'}
 ];
 
 var sql = new SQL(users);
 
 var predicate = function(row) {
-  return row.age<30;
+    return row.age<30;
 }
 
 var result = sql.groupBy('sex').where(predicate).select(['username', 'id']).getResult();
@@ -129,53 +129,53 @@ var result = sql.groupBy('sex').where(predicate).select(['username', 'id']).getR
 ```js
 // 限定
 function where(rows, predicate) {
-  if (_.isArray(rows)) {
-    return rows.filter(predicate);
-  } else if(_.isObject(rows)) {
-    return _.keys(rows).reduce(function(groups, group){
-      groups[group] = rows[group].filter(predicate);
-      return groups;
-    }, {});
-  } else {
-    return rows;
-  }
+    if (_.isArray(rows)) {
+        return rows.filter(predicate);
+    } else if (_.isObject(rows)) {
+        return _.keys(rows).reduce(function (groups, group) {
+            groups[group] = rows[group].filter(predicate);
+            return groups;
+        }, {});
+    } else {
+        return rows;
+    }
 }
 
 // 分组
 function groupBy(rows, key) {
-  return rows.reduce(function(groups, row){
-    // 获得当前key对应的值，如果分组中不存在，则新建
-    var group = row[key];
-    if(!groups[group]) {
-      groups[group] = [];
-    }
-    groups[group].push(row);
-    return groups;
-  }, {});
+    return rows.reduce(function (groups, row) {
+        // 获得当前key对应的值，如果分组中不存在，则新建
+        var group = row[key];
+        if (!groups[group]) {
+            groups[group] = [];
+        }
+        groups[group].push(row);
+        return groups;
+    }, {});
 }
 
 function doSelect(rows, keys) {
-  return rows.map(function(row) {
-    return _.keys(row).reduce(function(elem, key) {
-      if (_.indexOf(keys, key) > -1) {
-        elem[key] = row[key];
-      }
-      return elem;
-    }, {});
-  });
+    return rows.map(function (row) {
+        return _.keys(row).reduce(function (elem, key) {
+            if (_.indexOf(keys, key) > -1) {
+                elem[key] = row[key];
+            }
+            return elem;
+        }, {});
+    });
 }
 
 // 投影
 function select(rows, keys) {
-  if (_.isArray(rows)){
-    return doSelect(rows, keys);
-  } else if(_.isObject(rows)) {
-    return _.keys(rows).map(function(key){
-      return doSelect(rows[key], keys);
-    });
-  } else {
-    return rows;
-  }
+    if (_.isArray(rows)) {
+        return doSelect(rows, keys);
+    } else if (_.isObject(rows)) {
+        return _.keys(rows).map(function (key) {
+            return doSelect(rows[key], keys);
+        });
+    } else {
+        return rows;
+    }
 }
 ```
 
@@ -183,7 +183,7 @@ function select(rows, keys) {
 
 ```js
 function query(table, by, predicate, keys) {
-  return select(where(groupBy(table, by), predicate), keys);
+    return select(where(groupBy(table, by), predicate), keys);
 }
 ```
 
@@ -191,17 +191,17 @@ function query(table, by, predicate, keys) {
 
 ```js
 var users = [
-  {id: 0, name: 'wxj', age: 18, sex: 'male'},
-  {id: 1, name: 'john', age: 28, sex: 'male'},
-  {id: 2, name: 'bob', age: 33, sex: 'male'},
-  {id: 3, name: 'tom', age: 22, sex: 'male'},
-  {id: 4, name: 'alice', age: 18, sex: 'female'},
-  {id: 5, name: 'rihana', age: 35, sex: 'female'},
-  {id: 6, name: 'sara', age: 20, sex: 'female'}
+    {id: 0, name: 'wxj', age: 18, sex: 'male'},
+    {id: 1, name: 'john', age: 28, sex: 'male'},
+    {id: 2, name: 'bob', age: 33, sex: 'male'},
+    {id: 3, name: 'tom', age: 22, sex: 'male'},
+    {id: 4, name: 'alice', age: 18, sex: 'female'},
+    {id: 5, name: 'rihana', age: 35, sex: 'female'},
+    {id: 6, name: 'sara', age: 20, sex: 'female'}
 ];
 
 var predicate = function(elem) {
-  return elem.age < 30;
+    return elem.age < 30;
 };
 
 var result = query(users, 'sex', predicate, ['name', 'id']);
@@ -234,7 +234,7 @@ underscore 中的实现
 `group`
 -------
 
-内置函数 `group` 接受如下两个参数：
+内置函数 `group(behavior, partition)` 接受 2 个参数：
 
 -	`behavior`：获得组别后的行为，即当确定一个分组后，在该分组上施加的行为
 -	`partition`：是否是进行划分，即是否是将一个集合一分为二
@@ -258,7 +258,7 @@ var group = function (behavior, partition) {
 };
 ```
 
-`group` 将返回一个分组函数，其接受三个参数：
+`group` 将返回一个分组函数，其接受 3 个参数：
 
 -	`obj`：待分组集合对象
 -	`iteratee`：集合迭代器，同样会被内置函数 `cb` 优化
@@ -266,8 +266,10 @@ var group = function (behavior, partition) {
 
 下面我们看一看各个由 `group` 所创建的分组函数。
 
-`_.groupBy`：对集合按照指定的关键字进行分组
+`_.groupBy`
 -------------------------------------------
+
+`_.groupBy(obj, iteratee)`：对 `obj` 按照 `iteratee` 进行分组
 
 当 `iteratee` 确定了一个分组后，`_.groupBy` 的行为是：
 
@@ -286,7 +288,7 @@ _.groupBy = group(function (result, value, key) {
 **用例**：
 
 ```js
-_.groupBy([1.3, 2.1, 2.4], function(num){ return Math.floor(num); });
+_.groupBy([1.3, 2.1, 2.4], function(num) { return Math.floor(num); });
 // => {1: [1.3], 2: [2.1, 2.4]}
 
 _.groupBy(['one', 'two', 'three'], 'length');
@@ -295,6 +297,8 @@ _.groupBy(['one', 'two', 'three'], 'length');
 
 `_.indexBy`：对集合按照指定的关键字进行索引
 -------------------------------------------
+
+`_.indexBy(obj, iteratee)`：对 `obj` 按照 `iteratee` 进行索引。
 
 当 `iteratee` 确定了一个分组后，`_.indexBy` 的行为：
 
@@ -326,8 +330,10 @@ _.indexBy(students, 'age');
 //}
 ```
 
-`_.countBy`：分别对分组进行计数
+`_.countBy`
 -------------------------------
+
+`_.countBy(obj, iteratee)`：对 `obj` 按照 `iteratee` 进行计数。
 
 当 `iteratee` 确定了一个分组后，`_.countBy` 的行为：
 
@@ -351,8 +357,10 @@ _.countBy([1, 2, 3, 4, 5], function(num) {
 // => {odd: 3, even: 2}
 ```
 
-`_.partition`：将一个集合一分为二
+`_.partition`
 ---------------------------------
+
+`_.partition(obj, iteratee)`：将 `obj` 按照 `iteratee` 进行分组。
 
 当 `iteratee` 确定了一个分组后，`_.partion` 的行为：
 
@@ -371,7 +379,7 @@ _.partition = group(function (result, value, pass) {
 
 ```js
 _.partition([0, 1, 2, 3, 4, 5], function(num){
-  return num%2 !== 0;
+  return num % 2 !== 0;
 });
 // => [[1, 3, 5], [0, 2, 4]]
 ```

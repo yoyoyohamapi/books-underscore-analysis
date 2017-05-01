@@ -99,8 +99,10 @@ const modalMixin = (function () {
 })();
 ```
 
-underscore 中的 `_.mixin()`
+`_.mixin()`
 ---------------------------
+
+`_.mixin(obj)`：为 underscore 对象混入 `obj` 具有的功能。
 
 **源码**：
 
@@ -123,9 +125,9 @@ underscore 中的 `mixin(obj)` 将会用传入的 `obj` 来扩充 `_` 原型上�
 ```js
 _.mixin = function(obj) {
     // ...
-            var args = [this._wrapped];
-            push.apply(args, arguments);
-            return chainResult(this, func.apply(_, args));
+    var args = [this._wrapped];
+    push.apply(args, arguments);
+    return chainResult(this, func.apply(_, args));
     // ...
 }
 ```
@@ -134,9 +136,9 @@ _.mixin = function(obj) {
 
 ```js
 _.mixin({
-  capitalize: function(string) {
-    return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
-  }
+    capitalize: function(string) {
+        return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
+    }
 });
 _('fabio').capitalize();
 // => "Fabio"
@@ -162,9 +164,9 @@ mixin 不总是那么美好的，从其实现原理我们就可以看到，mixin
 
 ```js
 _.mixin({
-  map: function(array) {
-    console.log('map is broken!');
-  }
+    map: function(array) {
+        console.log('map is broken!');
+    }
 });
 
 _([1,2,3]).map(n => n*2);
